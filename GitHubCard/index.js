@@ -3,7 +3,8 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-axios.get('https://api.github.com/users/JC8747')
+axios
+  .get('https://api.github.com/users/JC8747')
   .then(res => {
     let newcard = res.data;
     carddata.appendChild(createUsercard(newcard))
@@ -62,8 +63,6 @@ followersArray.forEach(e => {
 </div>
 */
 function createUsercard(data){
-
-  //create elements
   const card = document.createElement('div');
   const profileImg = document.createElement('img');
   const cardInfo = document.createElement('div');
@@ -76,30 +75,24 @@ function createUsercard(data){
   const following = document.createElement('p');
   const bio = document.createElement('p');
 
-  //append elements
   card.append(profileImg, cardInfo);
   cardInfo.append( name, userName, location, profile, followers, following, bio)
   profile.append(link);
 
-  // classes
   card.classList.add('card');
   name.classList.add('name');
   userName.classList.add('username');
   cardInfo.classList.add('card-info');
 
-
-  //set content
-
-profileImg.src = data.avatar_url;
-name.textContent = data.name;
-userName.textContent = `Username: ${data.login}`;
-location.textContent =`Location: ${data.location}`;
-link.textContent = data.html_url;
-link.setAttribute('href', data.html_url);
-followers.textContent =`Followers: ${data.followers}`;
-following.textContent =`Following: ${data.following}`;
-bio.textContent = `Bio: ${data.bio}`;
-
+  profileImg.src = data.avatar_url;
+  name.textContent = data.name;
+  userName.textContent = `Username: ${data.login}`;
+  location.textContent =`Location: ${data.location}`;
+  link.textContent = data.html_url;
+  link.setAttribute('href', data.html_url);
+  followers.textContent =`Followers: ${data.followers}`;
+  following.textContent =`Following: ${data.following}`;
+  bio.textContent = `Bio: ${data.bio}`;
 
 return card;
 }
